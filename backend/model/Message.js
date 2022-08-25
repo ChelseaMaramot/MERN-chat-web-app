@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const MessageSchema = new mongoose.Schema({
     sender: {
@@ -11,4 +11,6 @@ const MessageSchema = new mongoose.Schema({
     conversationID: {
         type: String,
     }
-})
+});
+
+module.exports = mongoose.model("Message", MessageSchema);

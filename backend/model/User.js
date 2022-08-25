@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -20,4 +20,6 @@ const UserSchema = new mongoose.Schema({
         required: true,
         min: 6,
     }
-})
+});
+
+module.exports = moongoose.model('User', UserSchema);
