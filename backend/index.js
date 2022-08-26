@@ -3,14 +3,17 @@ const express = require("express");
 
 const app = express();
 
-mongoDB = 'mongodb://localhose:27017/chat-app';
+PORT = process.env.PORT || 3000
+
+mongoDB = 'mongodb://localhost:27017/chat-app';
 mongoose
-    .connect(mongoDB, { userNewUrlParser: true, useUnifiedTopology: true })
+    .connect(mongoDB)
     .then(() =>{
-        app.listen(process.env.PORT, () =>{
+        app.listen(PORT, () =>{
             console.log(`Connection was successful on port ${PORT}`)
         })
     })
     .catch((err) => console.log(err));
+
 
 const db = mongoose.connection;
