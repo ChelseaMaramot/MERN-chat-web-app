@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { sensitiveHeaders } = require('http2');
+const Message = require('../model/Message.js');
 const MessageSchema = require('../model/Message.js');
 
 router.post("/", async(req, res) => {
@@ -20,13 +21,21 @@ router.post("/", async(req, res) => {
     } catch (err){
         res.status(500).json(err);
     }
-    
+
     
 });
 
 
 router.get('/', async(req, res) => {
 
+    // will add params later 
+    try {
+        const message = await MessageSchema.find();
+        console.log(message);
+        res.status(200).json(message);
+    } catch(err){
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router; 
