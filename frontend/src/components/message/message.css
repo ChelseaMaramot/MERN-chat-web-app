@@ -1,3 +1,21 @@
 .messageContainer{
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0px;
+
+    display: inline-block;
+}
+
+.messageText{
+    color: white;
+    font-size: 0.7em;
+    word-wrap: break-word;
     background-color: #00D058;
+}
+
+.receivedText{
+    color: black;
+    font-size: 0.7em;
+    word-wrap: break-word;
+    background-color: #F3F3F3;
 }

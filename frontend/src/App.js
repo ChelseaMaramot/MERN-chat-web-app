@@ -1,10 +1,15 @@
 import React from 'react';
-import Message from './components/message/message';
+import Message from './components/Message/Message';
 
 function App() {
   return (
     <div>
-       <Message></Message>
+       <Message
+        newMessage = 'how are you?'
+       ></Message>
+       <Message
+        received = "ok"
+       ></Message>
     </div>
   );
 };

@@ -1,12 +1,17 @@
-import './message.css';
+import './Message.css';
 import React from 'react';
 
 
 const Message = (props) =>{
 
     return (
-        <div className="messageContainer">
-            Hello World
+        <div>
+            <div className="messageContainer messageText">
+                {props.newMessage}
+            </div>
+            <div className="messageContainer receivedText">
+                {props.received}
+            </div>
         </div>
     )
 };
