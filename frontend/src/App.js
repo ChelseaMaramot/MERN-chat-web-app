@@ -8,10 +8,6 @@ function App() {
        <Message
         newMessage = 'how are you?'
        ></Message>
-       <Message
-        received = "ok"
-       ></Message>
-
       <SendMessage></SendMessage>
 
     </div>

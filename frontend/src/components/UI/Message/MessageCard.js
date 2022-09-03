@@ -9,9 +9,6 @@ const Message = (props) =>{
             <div className="messageContainer messageText">
                 {props.newMessage}
             </div>
-            <div className="messageContainer receivedText">
-                {props.received}
-            </div>
         </div>
     )
 };
