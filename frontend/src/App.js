@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './components/UI/Message/MessageCard';
+import SendMessage from './components/SendMessage/SendMessage';
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
        <Message
         received = "ok"
        ></Message>
+
+      <SendMessage></SendMessage>
+
     </div>
   );
 };
