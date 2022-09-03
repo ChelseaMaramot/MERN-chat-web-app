@@ -1,10 +1,14 @@
+import './message.css';
+import React from 'react';
 
 
-export default function Message(props){
+const Message = (props) =>{
 
     return (
-        <div>
+        <div className="messageContainer">
             Hello World
         </div>
     )
-}
+};
+
+export default Message;
