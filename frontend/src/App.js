@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from './components/Message/Message';
+import Message from './components/UI/Message/MessageCard';
 
 function App() {
   return (
