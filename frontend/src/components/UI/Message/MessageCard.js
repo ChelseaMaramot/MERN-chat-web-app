@@ -1,4 +1,4 @@
-import './Message.css';
+import './MessageCard.css';
 import React from 'react';
 
 
