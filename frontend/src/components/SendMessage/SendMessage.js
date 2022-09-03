@@ -1,5 +1,6 @@
 import React from "react";
 import "./SendMessage.css";
+import Picker from 'emoji-picker-react';
 
 
 const SendMessage = (props) => {
