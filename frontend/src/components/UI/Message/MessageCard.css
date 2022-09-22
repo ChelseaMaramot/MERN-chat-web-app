@@ -2,7 +2,6 @@
     border-radius: 10px;
     padding: 10px;
     margin: 10px 0px;
-
     display: inline-block;
 }
 
@@ -11,6 +10,7 @@
     font-size: 0.7em;
     word-wrap: break-word;
     background-color: #00D058;
+    float: right;
 }
 
 .receivedText{
@@ -18,4 +18,5 @@
     font-size: 0.7em;
     word-wrap: break-word;
     background-color: #F3F3F3;
+    float: left;
 }

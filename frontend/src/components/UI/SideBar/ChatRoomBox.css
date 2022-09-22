@@ -1,0 +1,15 @@
+.chatRoomBox{
+    background-color: white;
+    display: flex;
+    height: 1200 px;
+    width: 380 px;
+    padding: 3px;
+    margin: 7px;
+    border-radius: 10px;
+}
+
+.chatRoomImg{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}

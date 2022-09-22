@@ -1,0 +1,29 @@
+.chat{
+    display: flex;
+    height: 100vh;
+}
+
+.leftChatBar{
+    flex: 3.5;
+    background-color: blue;
+}
+
+.openConversation{
+    flex: 5.5;
+}
+
+.chatInputWrapper{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    margin: 0 auto;
+
+}
+
+.chatInputWrapper .chatInput{
+    border-radius: 5px;
+    padding: 8px 5px;
+    width: 100%;
+    flex-grow: 1;
+    
+}

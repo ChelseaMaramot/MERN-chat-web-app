@@ -1,9 +1,10 @@
 import React from "react";
-import "./SendMessage.css";
+import "./MyMessage.css";
 import Picker from 'emoji-picker-react';
 
 
-const SendMessage = (props) => {
+const MyMessage = (props) => {
+    
     return(
         <form>
             <input 
@@ -15,4 +16,4 @@ const SendMessage = (props) => {
     )
 };
 
-export default SendMessage;
+export default MyMessage;
