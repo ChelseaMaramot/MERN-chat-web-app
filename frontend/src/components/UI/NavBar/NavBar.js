@@ -3,7 +3,7 @@ import './NavBar.css'
 
 function NavBar (props){
     return(
-        <div className="header">
+        <div className="chatNameContainer">
             <h3>Alora Bustos</h3>
         </div>
     )

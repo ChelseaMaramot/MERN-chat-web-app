@@ -1,27 +1,26 @@
 
 .message{
-    border-radius: 10px;
-    padding: 10px 0px 10px 20px;
-    margin: 5px 0px;
-    width: 70%;
     display: flex;
     flex-direction: column;
-    background-color: #F3F3F3;
+    margin-top: 10px;
 }
 
 .messageText{
     color: black;
     font-size: 0.8em;
-    word-wrap: break-word;
-
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    max-width: 60%;
+    padding: 10px;
 }
 
+
 .message.isMyMessage{
-    background-color: #00D058;
-    float: right;
+    align-items: flex-end;
 }
 
 .message.isMyMessage .messageText{
     color: white;
+    background-color: #00D058;
 }
 

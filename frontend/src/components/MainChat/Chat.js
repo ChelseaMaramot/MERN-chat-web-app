@@ -23,7 +23,9 @@ const Chat =(props) => {
                 </div>
             </div>
             <div className="openConversation">
-                <NavBar></NavBar>
+                <div className='chatName'>
+                    <NavBar></NavBar>
+                </div>
                 <div className='conversation'>
                     <MessageCard
                         message='Lorem ipsum dolor sit amet. Est veritatis minima non dolores amet sit voluptatem reprehenderit sed possimus quia ut impedit voluptas non galisum galisum. '
@@ -44,6 +46,10 @@ const Chat =(props) => {
                     <MessageCard
                         message='Lorem ipsum dolor sit amet. Est veritatis minima non dolores amet sit voluptatem reprehenderit sed possimus quia ut impedit voluptas non galisum galisum. '
                         isMyMessage = {false}
+                    ></MessageCard>
+                    <MessageCard
+                        message='yes. '
+                        isMyMessage = {true}
                     ></MessageCard>
                 </div>
 
