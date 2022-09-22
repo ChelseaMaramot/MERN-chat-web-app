@@ -1,3 +1,7 @@
+.message{
+    
+}
+
 input {
     border: none;
     border-radius: 15px;
@@ -5,4 +9,11 @@ input {
     font-size: 0.7em;
     background-color: #F3F3F3;
     float:right;
+}
+
+
+img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
 }

@@ -5,9 +5,9 @@ import React from 'react';
 const Message = (props) =>{
 
     return (
-        <div>
-            <div className="messageContainer messageText">
-                {props.newMessage}
+        <div className= {props.isMyMessage ? 'message isMyMessage' : 'message'}> 
+            <div className="messageText">
+                {props.message}
             </div>
         </div>
     )
