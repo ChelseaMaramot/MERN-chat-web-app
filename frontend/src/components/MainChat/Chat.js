@@ -46,6 +46,13 @@ const Chat =(props) => {
                         isMyMessage = {false}
                     ></MessageCard>
                 </div>
+
+                <div className='chatBottom'>
+                    <input
+                        type= 'text'
+                        placeholder='Text your message...'
+                    ></input>
+                </div>
             </div>
         </div>
     )

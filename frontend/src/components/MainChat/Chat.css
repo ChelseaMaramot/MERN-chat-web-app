@@ -1,6 +1,8 @@
 .chat{
     display: flex;
     height: 100vh;
+    margin-right: 0 15px;
+    overflow: hidden;
 }
 
 .leftChatBar{
@@ -12,7 +14,7 @@
     flex: 5.5;
 }
 
-.chatInputWrapper{
+.leftChatBar .chatInputWrapper{
     width: 100%;
     margin-top: 10px;
     display: flex;
@@ -20,10 +22,23 @@
 
 }
 
-.chatInputWrapper .chatInput{
+.leftChatBar .chatInputWrapper .chatInput{
     border-radius: 5px;
     padding: 8px 5px;
     width: 100%;
     flex-grow: 1;
     
 }
+
+.chatBottom{
+    padding: 10px 5px 15px 10px;
+    position: fixed;
+    bottom: 0;
+}
+
+.chatBottom input{
+    width: 100%;
+    border-radius: 5px;
+
+}
+

@@ -2,7 +2,6 @@ import React from 'react';
 import Chat from './components/MainChat/Chat';
 import NavBar from './components/UI/NavBar/NavBar';
 
-
 function App() {
   return (
     <div>
@@ -10,5 +9,6 @@ function App() {
     </div>
   );
 };
-
 export default App;
+
+
