@@ -1,15 +1,27 @@
 .chatRoomBox{
-    background-color: white;
     display: flex;
     height: 1200 px;
-    width: 380 px;
-    padding: 3px;
-    margin: 7px;
-    border-radius: 10px;
+
+    padding: 10px 15px;
+    border-radius: 2px;
+}
+.chatRoomBox:hover{
+    background-color: green;
+}
+
+.textWrapper{
+    padding: 10px 5px;
+    height: 100%;
+}
+
+.textWrapper .chatName{
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .chatRoomImg{
-    height: 60px;
-    width: 60px;
+    height: 53px;
+    width: 55px;
     border-radius: 50%;
+    margin-right: 3px;
 }

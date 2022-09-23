@@ -4,7 +4,7 @@ import './NavBar.css'
 function NavBar (props){
     return(
         <div className="chatNameContainer">
-            <h3>Alora Bustos</h3>
+            <h3>Jane Doe</h3>
         </div>
     )
 }

@@ -54,10 +54,14 @@ const Chat =(props) => {
                 </div>
 
                 <div className='chatBottom'>
-                    <input
-                        type= 'text'
-                        placeholder='Text your message...'
-                    ></input>
+                    <form class='chatForm'>
+                        <input className= "chatInputArea"
+                            type= 'text'
+                            placeholder='Text your message...'
+                        ></input>
+                        <button type='submit'></button>
+                    </form>
+                    
                 </div>
             </div>
         </div>

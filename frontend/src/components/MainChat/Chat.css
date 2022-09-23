@@ -1,7 +1,8 @@
 .chat{
     display: flex;
     height: 100vh;
-    margin-right: 0 15px;
+    margin-right: 3px;
+    
     overflow: hidden;
 }
 
@@ -13,11 +14,21 @@
 
 .leftChatBar{
     flex: 2.5;
-    background-color: F3F3F3;
+    background-color: #F3F3F3;
+   
 }
+
+.leftBarHeader{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 15px;
+    margin-top: 13px;
+}
+
 
 .openConversation{
     flex: 5.5;
+    margin: 0 3px;
 }
 
 
@@ -28,6 +39,7 @@
 .leftChatBar .chatInputWrapper{
     width: 100%;
     margin-top: 10px;
+    padding-left: 13px;
     display: flex;
     margin: 0 auto;
 
@@ -35,21 +47,60 @@
 
 .leftChatBar .chatInputWrapper .chatInput{
     border-radius: 5px;
-    padding: 8px 5px;
-    width: 100%;
-    flex-grow: 1;
+    padding: 5px 5px;
+    width: 85%;
     
 }
 
+
+.chatBoxWrapper{
+    margin-top: 15px;
+}
+
 .chatBottom{
-    padding: 10px 5px 15px 10px;
+   
     position: fixed;
     bottom: 0;
+
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+    width: 66%;
 }
 
-.chatBottom input{
+.chatBottom .chatForm{
     width: 100%;
-    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatBottom .chatForm .chatInputArea{
+    border-radius: 20px;
+    border-color: #F3F3F3;
+    border: solid 0.5px;
+
+    padding: 8px 10px;
+    margin-left: 30px;
+    height: 20px;
+    width: 100%;
+
+    overflow: auto;
+    overflow-x: hidden;
 
 }
+
+button{
+    height: 35px;
+    width: 40px;
+    margin-left: 5px;
+    border-radius: 50%;
+
+    border-radius: 20px;
+    border-color: #F3F3F3;
+    border: solid 0.5px;
+
+}
+
+
 
