@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const messages = require('./routes/messages.js');
+const messagesRoute = require('./routes/messagesRoute');
 
 const app = express();
 app.use(express.json());
@@ -16,8 +16,8 @@ mongoose
     })
     .catch((err) => console.log(err));
 
-
-app.use("/api/messages", messages);
+ 
+app.use("/api/messages", messagesRoute);
 app.listen(PORT, () =>{
     console.log(`Connection was successful on port ${PORT}`)
 });

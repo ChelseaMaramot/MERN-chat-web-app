@@ -10,6 +10,11 @@ const MessageSchema = new mongoose.Schema({
     },
     conversationID: {
         type: String,
+        required: true,
+    },
+    sentAt: {
+        type: Date,
+        default: () => Date.now()
     }
 });
 
