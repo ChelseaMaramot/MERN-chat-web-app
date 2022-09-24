@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const messagesController = require('../controllers/message/messagesController')
+const messagesController = require('../controllers/messagesController')
 
 router.post('/', messagesController.sendMessage);
 router.get('/:conversationID', messagesController.getMessages);

@@ -1,5 +1,4 @@
-const Message = require('../../model/Message.js');
-const MessageSchema = require('../../model/Message.js');
+const MessageSchema = require('../model/Message.js');
 const asyncHandler = require('express-async-handler');
 
 // METHOD: POST 
@@ -18,11 +17,11 @@ exports.sendMessage = asyncHandler(async(req, res) => {
 // requires the conversationID
 // gets all the messages associated with the conversationID 
 exports.getMessages = asyncHandler(async(req, res) => {
-    // will add params later 
     try {
         const messages = await MessageSchema.find({
             conversationID: req.params.conversationID,
         });
+
         console.log(messages);
         res.status(200).json(messages);
     } catch(err){
