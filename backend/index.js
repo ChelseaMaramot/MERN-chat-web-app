@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const messagesRoute = require('./routes/messagesRoute');
+const roomRoute = require('./routes/roomRoute');
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ mongoose
 
  
 app.use("/api/messages", messagesRoute);
+app.use("/api/rooms", roomRoute);
 app.listen(PORT, () =>{
     console.log(`Connection was successful on port ${PORT}`)
 });
