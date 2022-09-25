@@ -1,4 +1,4 @@
-const mongoose = require('monggose');
+const mongoose = require('mongoose');
 
 const RoomSchema = new mongoose.Schema({
     users: {

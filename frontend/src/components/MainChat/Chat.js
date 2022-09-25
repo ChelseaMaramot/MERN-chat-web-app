@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import ChatRoomBox from '../UI/SideBar/ChatRoomBox';
 import "./Chat.css";
 import NavBar from './../UI/NavBar/NavBar';
 import MessageCard from '../UI/Message/MessageCard';
 
+const api = axios.create({
+    baseURL: `http://localhost:3000/api`
+});
+
 const Chat =(props) => {
+
+    const [messages, setMessages] = useState([]);
+    const [conversationID, setConversationID] = useState('');
+
+    useEffect(() => {
+        console.log('here');
+        api.get(`/messages/5`).then(res => {
+            console.log(res.data);
+        }).catch(e => {
+            console.log(e.toJSON());
+        })
+    });
+    
     return (
         <div className='chat'>
             <div className='leftChatBar'>
