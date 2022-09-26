@@ -4,6 +4,7 @@ import ChatRoomBox from '../UI/SideBar/ChatRoomBox';
 import "./Chat.css";
 import NavBar from './../UI/NavBar/NavBar';
 import MessageCard from '../UI/Message/MessageCard';
+import DisplayMessages from '../DisplayMessages/DisplayMessages';
 
 const api = axios.create({
     baseURL: `http://localhost:3000/api`
@@ -17,11 +18,13 @@ const Chat =(props) => {
     useEffect(() => {
         console.log('here');
         api.get(`/messages/5`).then(res => {
-            console.log(res.data);
+            setMessages(res.data);
+            console.log(messages);
         }).catch(e => {
             console.log(e.toJSON());
         })
     });
+
     
     return (
         <div className='chat'>
@@ -45,34 +48,14 @@ const Chat =(props) => {
                     <NavBar></NavBar>
                 </div>
                 <div className='conversation'>
-                    <MessageCard
-                        message='Lorem ipsum dolor sit amet. Est veritatis minima non dolores amet sit voluptatem reprehenderit sed possimus quia ut impedit voluptas non galisum galisum. '
-                        isMyMessage = {true}
-                    ></MessageCard>
-                    <MessageCard
-                        message='Lorem ipsum dolor sit a amet sit voluptatem repreh '
-                        isMyMessage = {true}
-                    ></MessageCard>
-                    <MessageCard
-                        message='Eos consequatur necessitatibus vel molestiae enim non dolor dolore est itaque aperiam ea nihil rerum. Sed iusto velit et magni delectus quo inventore temporibus eum deleniti nihil et molestias magnam? Id facere inventore est consequatur praesentium aut quia omnis sed'
-                        isMyMessage = {false}
-                    ></MessageCard>
-                    <MessageCard
-                        message='Lorem ipsum dolor sit a amet sit voluptatem repreh '
-                        isMyMessage = {true}
-                    ></MessageCard>
-                    <MessageCard
-                        message='Lorem ipsum dolor sit amet. Est veritatis minima non dolores amet sit voluptatem reprehenderit sed possimus quia ut impedit voluptas non galisum galisum. '
-                        isMyMessage = {false}
-                    ></MessageCard>
-                    <MessageCard
-                        message='yes. '
-                        isMyMessage = {true}
-                    ></MessageCard>
+                    <DisplayMessages
+                        data = {messages}
+                        sender = 'chelsea'
+                    ></DisplayMessages>
                 </div>
 
                 <div className='chatBottom'>
-                    <form class='chatForm'>
+                    <form className='chatForm'>
                         <input className= "chatInputArea"
                             type= 'text'
                             placeholder='Text your message...'
