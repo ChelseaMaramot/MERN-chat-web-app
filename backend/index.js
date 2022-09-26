@@ -2,11 +2,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const messagesRoute = require('./routes/messagesRoute');
 const roomRoute = require('./routes/roomRoute');
-const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
 PORT = process.env.PORT || 3000
 mongoDB = 'mongodb://localhost:27017/chat-app';
