@@ -2,14 +2,16 @@
     display: flex;
     height: 100vh;
     margin-right: 3px;
+    overflow: hidden;
     
-    /*overflow: hidden;*/
 }
 
 .chatName{
     display: flex;
     align-items: center;
     justify-content: center;
+  
+   
 }
 
 .leftChatBar{
@@ -29,6 +31,11 @@
 .openConversation{
     flex: 5.5;
     margin: 0 3px;
+    overflow-y: scroll;
+}
+
+.openConversation::-webkit-scrollbar{ 
+    width: 0 !important 
 }
 
 
@@ -62,10 +69,12 @@
     position: fixed;
     bottom: 0;
 
-    margin-right: 10px;
-    margin-bottom: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 
     width: 66%;
+    z-index: 9999;
+    background-color: white;
 }
 
 .chatBottom .chatForm{

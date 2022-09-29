@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 // METHOD: POST 
 exports.sendMessage = asyncHandler(async(req, res) => {
+
     try{
         const newMessage = await MessageSchema.create(req.body);
         res.status(200).json(newMessage);
