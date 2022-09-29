@@ -14,7 +14,10 @@ const Chat =(props) => {
 
     const [messages, setMessages] = useState([]);
     const [conversationID, setConversationID] = useState('');
+    const [messageInput, setMessageInput] = useState('');
 
+    // METHOD: GET
+    // will change this dependency 
     useEffect(() => {
         console.log('here');
         api.get(`/messages/5`).then(res => {
@@ -23,20 +26,29 @@ const Chat =(props) => {
         }).catch(e => {
             console.log(e.toJSON());
         })
-    }, []);
+    }, [messageInput]);
 
-    useEffect(() => {
+
+    const inputMessageHandler = (event) => {
+        setMessageInput(event.target.value);
+        console.log(messageInput);
+    }
+
+    const enterMessageHandler = (event) => {
+        event.preventDefault();
         api.post('/messages', {
-            sender: "Diet",
-            message: "how are you",
+            sender: "Chel",
+            message: messageInput,
             conversationID: "5"
         })
         .then(res => {
+            setMessageInput('');
             console.log(res.data);
-        })
-    });
+        });
+        
+    }
 
-    
+
     return (
         <div className='chat'>
             <div className='leftChatBar'>
@@ -67,11 +79,11 @@ const Chat =(props) => {
 
                 <div className='chatBottom'>
                     <form className='chatForm'>
-                        <input className= "chatInputArea"
+                        <input className= "chatInputArea" onChange={inputMessageHandler}
                             type= 'text'
                             placeholder='Text your message...'
                         ></input>
-                        <button type='submit'></button>
+                        <button type='submit' onClick={enterMessageHandler}></button>
                     </form>
                     
                 </div>

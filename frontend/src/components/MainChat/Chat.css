@@ -3,7 +3,7 @@
     height: 100vh;
     margin-right: 3px;
     
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .chatName{
