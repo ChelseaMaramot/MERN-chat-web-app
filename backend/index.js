@@ -5,11 +5,11 @@ const roomRoute = require('./routes/roomRoute');
 const cors = require('cors');
 
 const app = express();
-app.use(cors);
+app.use(cors());
 app.use(express.json());
 
 PORT = process.env.PORT || 3000
-mongoDB = 'mongodb://localhost:27017/chat-app';
+const mongoDB = 'mongodb://localhost:27017/chat-app';
 
 
 mongoose
