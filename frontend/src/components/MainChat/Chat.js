@@ -23,6 +23,17 @@ const Chat =(props) => {
         }).catch(e => {
             console.log(e.toJSON());
         })
+    }, []);
+
+    useEffect(() => {
+        api.post('/messages', {
+            sender: "Diet",
+            message: "how are you",
+            conversationID: "5"
+        })
+        .then(res => {
+            console.log(res.data);
+        })
     });
 
     
