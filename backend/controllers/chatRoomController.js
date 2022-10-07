@@ -13,9 +13,23 @@ exports.createRoom = asyncHandler(async(req, res) => {
     } 
 });
 
-// METHOD: GET
+// METHOD: GET rooms according to id
 // Gets the db records according to the conversationID
+// will add param later
 exports.getRoomID = asyncHandler(async(req, res) => {
+    try{
+        const room = await RoomSchema.find();
+        res.status(200).json(room);
+        console.log(room);
+        console.log('got all the rooms')
+    } catch(err){
+        res.status(500).json(err);
+    }
+});
+
+
+// METHOD: GET all rooms
+exports.getAllRooms = asyncHandler(async(req, res) => {
     try{
         const room = await RoomSchema.find();
         res.status(200).json(room);

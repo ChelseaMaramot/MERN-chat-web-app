@@ -4,7 +4,8 @@ import ChatRoomBox from '../UI/SideBar/ChatRoomBox';
 import "./Chat.css";
 import NavBar from './../UI/NavBar/NavBar';
 import MessageCard from '../UI/Message/MessageCard';
-import DisplayMessages from '../DisplayMessages/DisplayMessages';
+import DisplayMessages from '../DisplayData/DisplayMessages';
+import DisplayRooms from '../DisplayData/DisplayRooms';
 
 const api = axios.create({
     baseURL: `http://localhost:3000/api`
@@ -13,13 +14,13 @@ const api = axios.create({
 const Chat =(props) => {
 
     const [messages, setMessages] = useState([]);
+    const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
     const [messageInput, setMessageInput] = useState('');
 
-    // METHOD: GET
+    // METHOD: GET messages
     // will change this dependency 
     useEffect(() => {
-        console.log('here');
         api.get(`/messages/5`).then(res => {
             setMessages(res.data);
             console.log(messages);
@@ -27,6 +28,20 @@ const Chat =(props) => {
             console.log(e.toJSON());
         })
     }, [messageInput]);
+
+
+    // METHOD: GET all rooms
+    // will change this dependency 
+
+    useEffect(() => {
+        api.get(`/rooms`).then(res => {
+            setRooms(res.data);
+            console.log(rooms);
+        }).catch(e => {
+            console.log(e.toJSON());
+        })
+    }, []);
+
 
 
     const inputMessageHandler = (event) => {
@@ -55,6 +70,10 @@ const Chat =(props) => {
         
     }
 
+    const onClickRoom = () => {
+        
+    }
+
 
     return (
         <div className='chat'>
@@ -66,11 +85,9 @@ const Chat =(props) => {
                     <input className= "chatInput" placeholder='Search'></input>
                 </div>
                 <div className='chatBoxWrapper'>
-                    <ChatRoomBox></ChatRoomBox>
-                    <ChatRoomBox></ChatRoomBox>
-                    <ChatRoomBox></ChatRoomBox>
-                    <ChatRoomBox></ChatRoomBox>
-                    <ChatRoomBox></ChatRoomBox>
+                    <DisplayRooms
+                        data={rooms}
+                    ></DisplayRooms>
                 </div>
             </div>
             <div className="openConversation">
