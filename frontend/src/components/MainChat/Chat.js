@@ -36,6 +36,13 @@ const Chat =(props) => {
 
     const enterMessageHandler = (event) => {
         event.preventDefault();
+
+        console.log(messageInput);
+
+        if (messageInput == ''){
+            return
+        }
+
         api.post('/messages', {
             sender: "Chel",
             message: messageInput,
