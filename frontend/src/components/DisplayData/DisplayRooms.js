@@ -5,9 +5,6 @@ import MessageCard from '../UI/SideBar/ChatRoomBox';
 
 // will add auth context 
 const DisplayRooms = ({data, onSelectRoom}) => {
-
-    
-
     return (
         <div>
             {data.map((item, index) =>

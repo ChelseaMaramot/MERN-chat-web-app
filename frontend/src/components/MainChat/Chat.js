@@ -39,7 +39,7 @@ const Chat =(props) => {
         }).catch(e => {
             console.log(e.toJSON());
         })
-    }, []);
+    }, [rooms]);
 
     const inputMessageHandler = (event) => {
         setMessageInput(event.target.value);
@@ -71,6 +71,14 @@ const Chat =(props) => {
         console.log(`selected chat conversationID:`, conversationID);
     }
 
+    // change the params!
+    const createNewRoom = () => {
+        api.post('/rooms', {
+            users: ["bob", "jill"],
+            conversationID: 2,
+            roomName: 'random'
+        })
+    }
   
     return (
         <div className='chat'>
@@ -87,6 +95,7 @@ const Chat =(props) => {
                         onSelectRoom = {selectRoom}
                     ></DisplayRooms>
                 </div>
+                <button type="submit" onClick={createNewRoom}></button>
             </div>
             <div className="openConversation">
                 <div className='chatName'>
@@ -108,13 +117,10 @@ const Chat =(props) => {
                         ></input>
                         <button type='submit' onClick={enterMessageHandler}></button>
                     </form>
-                    
                 </div>
             </div>
         </div>
     )
 }
-
-
 
 export default Chat;
