@@ -1,13 +1,21 @@
+import { useState } from 'react';
 import ChatRoomBox from '../UI/SideBar/ChatRoomBox';
 import MessageCard from '../UI/SideBar/ChatRoomBox';
 
-const DisplayRooms = ({data}) => {
+
+// will add auth context 
+const DisplayRooms = ({data, onSelectRoom}) => {
+
+    
+
     return (
         <div>
-            {data.map(item =>
+            {data.map((item, index) =>
                 <ChatRoomBox
-                    conversationID={item.conversationID}
-                    roomName={item.roomName}
+                    key = {index}
+                    conversationID = {item.conversationID}
+                    roomName = {item.roomName}
+                    onClickRoom = {onSelectRoom}
                 ></ChatRoomBox>
             )}
         </div>

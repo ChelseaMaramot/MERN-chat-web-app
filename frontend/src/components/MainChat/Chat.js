@@ -70,10 +70,13 @@ const Chat =(props) => {
         
     }
 
-    const onClickRoom = () => {
-        
+    // use context on this one
+    // chat -> DisplayRoom -> ChatRoomBox
+    const selectRoom = (id) => {
+        console.log(`select this chat`, id);
     }
 
+  
 
     return (
         <div className='chat'>
@@ -87,6 +90,7 @@ const Chat =(props) => {
                 <div className='chatBoxWrapper'>
                     <DisplayRooms
                         data={rooms}
+                        onSelectRoom = {selectRoom}
                     ></DisplayRooms>
                 </div>
             </div>
