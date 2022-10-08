@@ -3,10 +3,11 @@ import MessageCard from '../UI/Message/MessageCard';
 const DisplayMessages = ({data}) => {
     return (
         <div>
-            {data.map(item =>
+            {data.map((item, index) =>
                 <MessageCard
+                    key = {index}
                     message = {item.message}
-                    isMyMessage = {item.sender=='Chel' ? true : false}
+                    isMyMessage = {item.sender=='chelsea' ? true : false}
                 ></MessageCard>
             )}
         </div>

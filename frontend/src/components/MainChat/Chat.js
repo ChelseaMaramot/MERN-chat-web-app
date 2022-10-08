@@ -19,30 +19,27 @@ const Chat =(props) => {
     const [messageInput, setMessageInput] = useState('');
 
     // METHOD: GET messages
-    // will change this dependency 
+    // will change this dependency, messageInput
     useEffect(() => {
-        api.get(`/messages/5`).then(res => {
+        console.log(`getting messages w/ conversationID:`, conversationID)
+        api.get(`/messages/${conversationID}`).then(res => {
             setMessages(res.data);
-            console.log(messages);
+            //console.log(`Get Messages:`, messages);
         }).catch(e => {
             console.log(e.toJSON());
         })
-    }, [messageInput]);
+    }, [conversationID, messageInput]);
 
 
     // METHOD: GET all rooms
     // will change this dependency 
-
     useEffect(() => {
         api.get(`/rooms`).then(res => {
             setRooms(res.data);
-            console.log(rooms);
         }).catch(e => {
             console.log(e.toJSON());
         })
     }, []);
-
-
 
     const inputMessageHandler = (event) => {
         setMessageInput(event.target.value);
@@ -51,17 +48,16 @@ const Chat =(props) => {
 
     const enterMessageHandler = (event) => {
         event.preventDefault();
-
-        console.log(messageInput);
-
+        //console.log(messageInput);
+        console.log("sending message with conversation ID: ", conversationID)
         if (messageInput == ''){
             return
         }
-
+        
         api.post('/messages', {
-            sender: "Chel",
+            sender: "chelsea",
             message: messageInput,
-            conversationID: "5"
+            conversationID: conversationID
         })
         .then(res => {
             setMessageInput('');
@@ -73,11 +69,11 @@ const Chat =(props) => {
     // use context on this one
     // chat -> DisplayRoom -> ChatRoomBox
     const selectRoom = (id) => {
-        console.log(`select this chat`, id);
+        setConversationID(id);
+        console.log(`selected chat conversationID:`, conversationID);
     }
 
   
-
     return (
         <div className='chat'>
             <div className='leftChatBar'>
