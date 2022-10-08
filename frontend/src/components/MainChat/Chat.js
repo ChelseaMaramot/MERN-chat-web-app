@@ -43,7 +43,6 @@ const Chat =(props) => {
 
     const inputMessageHandler = (event) => {
         setMessageInput(event.target.value);
-        console.log(messageInput);
     }
 
     const enterMessageHandler = (event) => {
@@ -63,7 +62,6 @@ const Chat =(props) => {
             setMessageInput('');
             console.log(res.data);
         });
-        
     }
 
     // use context on this one
@@ -106,6 +104,7 @@ const Chat =(props) => {
                         <input className= "chatInputArea" onChange={inputMessageHandler}
                             type= 'text'
                             placeholder='Text your message...'
+                            value={messageInput}
                         ></input>
                         <button type='submit' onClick={enterMessageHandler}></button>
                     </form>
