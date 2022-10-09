@@ -6,18 +6,26 @@ import NavBar from './../UI/NavBar/NavBar';
 import MessageCard from '../UI/Message/MessageCard';
 import DisplayMessages from '../DisplayData/DisplayMessages';
 import DisplayRooms from '../DisplayData/DisplayRooms';
+import { io } from "socket.io-client";
+
 
 const api = axios.create({
     baseURL: `http://localhost:3000/api`
 });
+// pass url to backend
+const socket = io('http://localhost:8090');
 
 const Chat =(props) => {
-
     const [messages, setMessages] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
     const [messageInput, setMessageInput] = useState('');
 
+    socket.emit("chat-message", data => {
+        console.log(data);
+    });
+
+    
     // METHOD: GET messages
     // will change this dependency, messageInput
     useEffect(() => {
