@@ -11,19 +11,49 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useReducer } from 'react';
 
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  loading: false,
+  errorMessage: null
+};
+
+function reducer(state, action){
+  switch(action.type){
+    case 'LOGIN_SUCCESS':
+      return {
+        ...state,
+        email: action.payload.email,
+        password: action.payload.password,
+      };
+    }
+}
 
 
 const theme = createTheme();
 
 export default function LogIn() {
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const action = {
+      type: "LOGIN_SUCCESS",
+      payload: {
+        email: data.get('email'),
+        password: data.get('password')
+      }
+    };
+
+    dispatch(action);
+    console.log(state);
+
   };
 
   return (
