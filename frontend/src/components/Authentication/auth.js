@@ -106,7 +106,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-                SIGN UP
+                {isSignUp ? 'Sign Up' : 'Login'}
             </Button>
             <Grid container>
               <Grid item xs>
