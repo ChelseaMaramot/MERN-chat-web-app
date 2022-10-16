@@ -12,7 +12,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useReducer } from 'react';
+import axios from 'axios'
 
+const api = axios.create({
+  baseURL: `http://localhost:3000/api`
+});
 
 const theme = createTheme();
 
@@ -23,9 +27,19 @@ export default function SignUp() {
 
     const data = new FormData(event.currentTarget);
     console.log({
+      username: data.get('username'),
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    //post the new user data
+    api.post('/register', {
+      email: data.get('email'),
+      password: data.get('password'),
+      username: data.get('username'),
+    })
+
+    
   };
 
   return (
@@ -46,6 +60,16 @@ export default function SignUp() {
             Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
               margin="normal"
               required
@@ -87,7 +111,7 @@ export default function SignUp() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Already have an account? Login"}
                 </Link>
               </Grid>
             </Grid>
