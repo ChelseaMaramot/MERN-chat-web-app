@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,32 +14,34 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useReducer } from 'react';
 import axios from 'axios'
 
+
+
 const api = axios.create({
   baseURL: `http://localhost:3000/api`
 });
-
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const [isSignUp, setIsSignUp] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
 
-    //post the new user data
-    api.post('/register', {
-      email: data.get('email'),
-      password: data.get('password'),
-      username: data.get('username'),
-    })
-
-    
+    if (isSignUp){
+      api.post('/register', {
+        email: data.get('email'),
+        password: data.get('password'),
+        username: data.get('username'),
+      })
+    }else{
+      api.get('/login', {
+        password: data.get('password'),
+        username: data.get('username'),
+      })
+    }
   };
 
   return (
@@ -48,7 +50,7 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 15,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -57,9 +59,11 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign Up
+            {isSignUp ? "Sign Up" : "Login"}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          
+          {isSignUp ? 
           <TextField
               margin="normal"
               required
@@ -69,7 +73,8 @@ export default function SignUp() {
               name="username"
               autoComplete="username"
               autoFocus
-            />
+            /> :null
+            }
             <TextField
               margin="normal"
               required
@@ -105,13 +110,13 @@ export default function SignUp() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href='#' variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Already have an account? Login"}
+                <Link href='#'  variant="body2" onClick = {() => {setIsSignUp(!isSignUp)}}>
+                  {isSignUp ? "Already have an account? Login" : "Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
