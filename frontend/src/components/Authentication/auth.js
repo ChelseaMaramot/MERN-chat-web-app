@@ -23,7 +23,7 @@ const theme = createTheme();
 
 export default function SignUp() {
 
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
