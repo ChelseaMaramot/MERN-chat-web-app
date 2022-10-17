@@ -7,6 +7,7 @@ import MessageCard from '../UI/Message/MessageCard';
 import DisplayMessages from '../DisplayData/DisplayMessages';
 import DisplayRooms from '../DisplayData/DisplayRooms';
 import { io } from "socket.io-client";
+import { useParams } from 'react-router-dom';
 
 
 const api = axios.create({
@@ -16,6 +17,7 @@ const api = axios.create({
 const socket = io('http://localhost:8090');
 
 const Chat =(props) => {
+    const { user } = useParams();
     const [messages, setMessages] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
@@ -62,7 +64,7 @@ const Chat =(props) => {
         }
         
         api.post('/messages', {
-            sender: "chelsea",
+            sender: user,
             message: messageInput,
             conversationID: conversationID
         })
@@ -104,7 +106,7 @@ const Chat =(props) => {
                     ></DisplayRooms>
                 </div>
                 <button type="submit" onClick={createNewRoom}></button>
-            </div>
+            </div> 
             <div className="openConversation">
                 <div className='chatName'>
                     <NavBar></NavBar>
@@ -112,7 +114,7 @@ const Chat =(props) => {
                 <div className='conversation'>
                     <DisplayMessages
                         data = {messages}
-                        sender = 'chelsea'
+                        sender = {user}
                     ></DisplayMessages>
                 </div>
 
