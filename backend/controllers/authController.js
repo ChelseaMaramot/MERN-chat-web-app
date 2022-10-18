@@ -1,12 +1,11 @@
 const asyncHandler = require('express-async-handler');
-const User = require('../model/User');
 const UserSchema = require('../model/User');
 
 //Method: POST
 exports.registerUser= asyncHandler(async(req, res) => {
     try{
         const { username, email, password } = req.body;
-        const emailExists = await User.findOne({ email });
+        const emailExists = await UserSchema.findOne({ email });
 
         if (emailExists){
             res.status(500);
@@ -26,10 +25,11 @@ exports.registerUser= asyncHandler(async(req, res) => {
 exports.loginUser= asyncHandler(async(req, res) => {
     try {
         const user = await UserSchema.find({
-            email: req.params.email,
-            password: req.params.password
+            email: req.body.email,
+            password: req.body.password
         });
         res.status(200).json(user);
+        console.log(req.body);
 
     } catch(err){
         res.status(500).json(err);
