@@ -22,7 +22,7 @@ exports.registerUser= asyncHandler(async(req, res) => {
 
 
 //METHOD: POST
-exports.loginUser= asyncHandler(async(req, res) => {
+exports.loginUser= asyncHandler(async(req, res, next) => {
     try {
         const user = await UserSchema.findOne({
             email: req.body.email,
