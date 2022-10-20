@@ -40,6 +40,7 @@ export default function SignUp() {
         password: data.get('password'),
         email: data.get('email'),
       })
+      
     }
   };
 
