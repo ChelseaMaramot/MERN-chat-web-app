@@ -36,9 +36,9 @@ export default function SignUp() {
         username: data.get('username'),
       })
     }else{
-      api.get('/login', {
+      api.post('/login', {
         password: data.get('password'),
-        username: data.get('username'),
+        email: data.get('email'),
       })
     }
   };
