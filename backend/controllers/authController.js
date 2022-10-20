@@ -21,16 +21,17 @@ exports.registerUser= asyncHandler(async(req, res) => {
 });
 
 
-//METHOD: GET
+//METHOD: POST
 exports.loginUser= asyncHandler(async(req, res) => {
     try {
         const user = await UserSchema.find({
             email: req.body.email,
             password: req.body.password
         });
-        res.status(200).json(user);
-        console.log(req.body);
 
+        !user && res.status(404).json("User not found");
+        res.status(200).json(user);
+        console.log(user);
     } catch(err){
         res.status(500).json(err);
     }
