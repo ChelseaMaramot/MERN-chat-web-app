@@ -16,12 +16,13 @@ module.exports.authenticateToken = function(req, res, next){
     if (!token) return res.status(401);
     console.log(token);
 
+    /*
     jwt.verify(token, process.env.TOKEN_SECRET as string, (err: any, user: any) => {
         console.log(err);
         if (err) return res.status(403);
-
         req.username = user
     })
+    */
 
     /*
     crypto.randomBytes(64, (err, buf) => {

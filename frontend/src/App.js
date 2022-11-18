@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/" element={<Auth></Auth>}/>
+          {/*<Route path="/" element={<Auth></Auth>}/>*/}
           <Route path="/chat/:user" element={<Chat></Chat>}/>
         </Routes>
     </Router>
