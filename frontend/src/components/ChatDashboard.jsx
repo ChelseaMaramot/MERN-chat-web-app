@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
 import SideNavbar from "./SideNavbar";
-import { Box, Grid, Item, Typography, TextField } from "@mui/material";
+import { Button, Box, Grid, Item, Typography, TextField } from "@mui/material";
 import ChatBar from "./ChatBar";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
@@ -12,7 +12,7 @@ const api = axios.create({
 
   
 export default function ChatDashboard(props) {
-    const { user } = 'chelsea';
+    const { user } = 'you';
     const [messages, setMessages] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
@@ -45,7 +45,29 @@ export default function ChatDashboard(props) {
             console.log(e.toJSON());
         })
     }, [conversationID, messageInput]);
-    
+
+    const inputMessageHandler = (event) => {
+        setMessageInput(event.target.value);
+    }
+
+    const enterMessageHandler = (event) => {
+        event.preventDefault();
+        //console.log(messageInput);
+        console.log("sending message with conversation ID: ", conversationID)
+        if (messageInput == ''){
+            return
+        }
+        
+        api.post('/messages', {
+            sender: user,
+            message: messageInput,
+            conversationID: conversationID
+        })
+        .then(res => {
+            setMessageInput('');
+            console.log(res.data);
+        });
+    }
 
     return(
         <Box
@@ -68,28 +90,52 @@ export default function ChatDashboard(props) {
                 roomData = {rooms}
             ></Sidebar>
             <Box sx={{flexGrow: 1, marginRight: '30px', position: 'relative'}}>
-                <ChatBar></ChatBar>
-                {messages.map((item, index) =>
-                    <MessageCard
-                        key = {index}
-                        message = {item.message}
-                        isMyMessage = {item.user==user ? true : false}
-                    ></MessageCard>
-                )}
-
-                {/*message input*/}
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 2, width: '60vw' },
-                        bottom: 0,
-                        position: 'absolute',
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField color="secondary" placeholder="Message" fullWidth/>
-                </Box>
+                <Grid container direction="column" >
+                    <Grid item xs={2}>
+                        <ChatBar></ChatBar>
+                    </Grid>
+                    <Grid item xs={10}>
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            height: '82vh',
+                            overflowY: "scroll",
+                            '&::-webkit-scrollbar': {
+                                display: 'none'
+                              }
+                            }}
+                        >
+                            {messages.map((item, index) =>
+                                <MessageCard
+                                    key = {index}
+                                    message = {item.message}
+                                    isMyMessage = {item.user==user ? true : false}
+                                ></MessageCard>
+                            )}
+                        </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Box
+                            component="form"
+                            sx={{
+                                '& > :not(style)': { m: 2, width: '60vw'},
+                                bottom: 0,
+                                position: 'absolute',
+                                display: 'flex',
+                                flexDirection: "row",
+                                zIndex:999,
+                            }}
+                            noValidate
+                            autoComplete="off"
+                            >
+                            <TextField value={messageInput} color="secondary" placeholder="Message" fullWidth onChange={inputMessageHandler}/>
+                            <Button 
+                            type='submit'
+                            onClick={enterMessageHandler} 
+                            ></Button>
+                        </Box>
+                     </Grid>
+                </Grid>
             </Box>
         </Box>
     )
