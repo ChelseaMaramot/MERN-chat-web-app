@@ -12,7 +12,7 @@ const api = axios.create({
 
   
 export default function ChatDashboard(props) {
-    const { user } = 'you';
+    const user = "chelsea";
     const [messages, setMessages] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
@@ -80,8 +80,6 @@ export default function ChatDashboard(props) {
                 m:-1,
                 overflow: 'hidden',
                 background: "rgba(251, 248, 255, .8)",
-                
-
             }}
         >
             <SideNavbar></SideNavbar>
@@ -98,7 +96,7 @@ export default function ChatDashboard(props) {
                         <Box sx={{
                             display: "flex",
                             flexDirection: "column",
-                            height: '82vh',
+                            height: '78vh',
                             overflowY: "scroll",
                             '&::-webkit-scrollbar': {
                                 display: 'none'
@@ -109,7 +107,7 @@ export default function ChatDashboard(props) {
                                 <MessageCard
                                     key = {index}
                                     message = {item.message}
-                                    isMyMessage = {item.user==user ? true : false}
+                                    isMyMessage = {item.sender==user ? true : false}
                                 ></MessageCard>
                             )}
                         </Box>
