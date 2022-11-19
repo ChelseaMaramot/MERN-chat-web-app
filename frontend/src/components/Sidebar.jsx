@@ -4,22 +4,14 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 
 const theme = createTheme({
-    palette: {
-        primary:{
-            main: 'rgba(53, 34, 172, 0.88)',
-        },
-        background:{
-            paper: 'rgba(242, 233, 255, 0.24)'
-        }
-    },
     components:{
         MuiListItemButton: {
             styleOverrides: {
                 root: {
                     "&.Mui-selected": {
                         background: 'linear-gradient(90.02deg, rgba(153, 138, 180, 0.61) 12.68%, rgba(153, 138, 180, 0.2) 77.17%, rgba(153, 138, 180, 0.152695) 92.27%, rgba(153, 138, 180, 0.19) 97.41%)',
-                        border: '1px solid #F5F5F5',
-                        'box-shadow': '0px 4px 4px 0px #00000040',
+                        border: '1px solid rgba(242, 233, 255, 0.24)',
+                        boxShadow: '0px 4px 4px 0px #00000040',
 
                     }
                 }
@@ -46,6 +38,8 @@ export default function Sidebar(){
                     '& .MuiDrawer-paper': {
                         boxSizing: 'border-box',
                     },
+                    background: 'rgba(242, 233, 255, 0.24)',
+
                 }}
                
                 >
@@ -56,7 +50,8 @@ export default function Sidebar(){
                             <ListItemButton
                                 selected={selectedIndex === index}
                                 onClick={(event) => handleListItemClick(index)}
-                                sx={{width: 435, height: 90, border: '1px solid #FFFFFF', radius: 5}}
+                                sx={{ height: 85, border: '.25px solid rgba(242, 233, 255, 0.24)', radius: 5, background: 'rgba(242, 233, 255, 0.05)'
+                            }}
                                 >
                                 <ListItemText primary={text} />
                             </ListItemButton>
