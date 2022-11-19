@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
 import SideNavbar from "./SideNavbar";
-import { Box, Grid, Item, Typography } from "@mui/material";
+import { Box, Grid, Item, Typography, TextField } from "@mui/material";
 import ChatBar from "./ChatBar";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
@@ -58,6 +58,7 @@ export default function ChatDashboard(props) {
                 m:-1,
                 overflow: 'hidden',
                 background: "rgba(251, 248, 255, .8)",
+                
 
             }}
         >
@@ -66,18 +67,29 @@ export default function ChatDashboard(props) {
                 onSelectRoomID = {selectRoom}
                 roomData = {rooms}
             ></Sidebar>
-            <Box sx={{flexGrow: 1, marginRight: '30px'}}>
+            <Box sx={{flexGrow: 1, marginRight: '30px', position: 'relative'}}>
                 <ChatBar></ChatBar>
-
                 {messages.map((item, index) =>
-                <MessageCard
-                    key = {index}
-                    message = {item.message}
-                    isMyMessage = {item.user==user ? true : false}
-                ></MessageCard>
-            )}
+                    <MessageCard
+                        key = {index}
+                        message = {item.message}
+                        isMyMessage = {item.user==user ? true : false}
+                    ></MessageCard>
+                )}
 
-
+                {/*message input*/}
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 2, width: '60vw' },
+                        bottom: 0,
+                        position: 'absolute',
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                    <TextField color="secondary" placeholder="Message" fullWidth/>
+                </Box>
             </Box>
         </Box>
     )
