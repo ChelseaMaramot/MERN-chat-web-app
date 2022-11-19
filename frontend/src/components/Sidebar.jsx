@@ -3,7 +3,6 @@ import { Box, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, L
 import { createTheme, ThemeProvider } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 
-const drawerWidth = 445;
 const theme = createTheme({
     palette: {
         primary:{
@@ -41,23 +40,23 @@ export default function Sidebar(){
             <Box 
                 sx={{
                     m: 0,
-                    width: drawerWidth,
+                    width: '25%',
+                    minWidth: '100px',
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
-                        width: drawerWidth,
                         boxSizing: 'border-box',
                     },
                 }}
                
                 >
-                <Typography variant="h5">Messages</Typography>
+                <Typography variant="h5" sx={{m: '40px 20px'}}>Messages</Typography>
                 <List>
                     {['Jane Doe', 'Jane Doe', 'Jane Doe', 'Jane Doe'].map((text, index) => (
                         <ListItem key={text} disablePadding>
                             <ListItemButton
                                 selected={selectedIndex === index}
                                 onClick={(event) => handleListItemClick(index)}
-                                sx={{width: 435, height: 121, border: '1px solid #FFFFFF', radius: 5}}
+                                sx={{width: 435, height: 90, border: '1px solid #FFFFFF', radius: 5}}
                                 >
                                 <ListItemText primary={text} />
                             </ListItemButton>

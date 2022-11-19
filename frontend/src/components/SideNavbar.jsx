@@ -16,7 +16,8 @@ export default function SideNavbar(){
                     display: 'flex',
                     alignItems: 'center',
                     m: 0,
-                    width: '10%',
+                    maxwidth: '2.5%',
+                    minWidth: '40px',
                     height: '100vh',
                     background: 'linear-gradient(90deg, rgba(53, 34, 172, 0) 0%, #5A4DEE 0.01%, rgba(67, 60, 149, 0.81769) 99.98%, rgba(33, 26, 112, 0.75) 99.99%, rgba(53, 34, 172, 0) 100%)',
                 }}
