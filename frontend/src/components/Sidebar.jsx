@@ -21,10 +21,12 @@ const theme = createTheme({
 });
 
 
-export default function Sidebar(){
-    const [selectedIndex, setSelectedIndex] = useState('');
-    const handleListItemClick = (index) => {
-        setSelectedIndex(index);
+export default function Sidebar(props){
+    const [selectedRoomID, setSelectedRoomID] = useState('');
+
+    const handleListItemClick = (roomID) => {
+        setSelectedRoomID(roomID);
+        props.onSelectRoomID(roomID)
     };
     
     return (
@@ -45,15 +47,15 @@ export default function Sidebar(){
                 >
                 <Typography variant="h5" sx={{m: '40px 20px'}}>Messages</Typography>
                 <List>
-                    {['Jane Doe', 'Jane Doe', 'Jane Doe', 'Jane Doe'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
+                    {props.roomData.map((room, index) => (
+                        <ListItem key={index} disablePadding>
                             <ListItemButton
-                                selected={selectedIndex === index}
-                                onClick={(event) => handleListItemClick(index)}
+                                selected={selectedRoomID == room.conversationID}
+                                onClick={(event) => handleListItemClick(room.conversationID)}
                                 sx={{ height: 85, border: '.25px solid rgba(242, 233, 255, 0.24)', radius: 5, background: 'rgba(242, 233, 255, 0.05)'
                             }}
                                 >
-                                <ListItemText primary={text} />
+                                <ListItemText primary={room.roomName} />
                             </ListItemButton>
                         </ListItem>
                     ))}

@@ -24,7 +24,7 @@ export default function SideNavbar(){
                 >
                 <List>
                     {[<MessageIcon />, <ImportContactsIcon />, <DarkModeIcon />, <AccountCircleIcon />].map((icon, index) => (
-                        <ListItem>
+                        <ListItem key={index}>
                             <ListItemButton >
                                 {icon}
                             </ListItemButton>
