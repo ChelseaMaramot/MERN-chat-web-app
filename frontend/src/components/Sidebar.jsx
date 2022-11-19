@@ -38,8 +38,9 @@ export default function Sidebar(){
     
     return (
         <ThemeProvider theme={theme}>
-            <Drawer 
+            <Box 
                 sx={{
+                    m: 0,
                     width: drawerWidth,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
@@ -47,7 +48,7 @@ export default function Sidebar(){
                         boxSizing: 'border-box',
                     },
                 }}
-                variant="permanent"
+               
                 >
                 <Typography variant="h5">Messages</Typography>
                 <List>
@@ -63,7 +64,7 @@ export default function Sidebar(){
                         </ListItem>
                     ))}
                 </List>
-            </Drawer>
+            </Box>
         </ThemeProvider>
     )
 }
