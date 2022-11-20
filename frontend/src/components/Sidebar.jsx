@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Box, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Box, TextField, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 
@@ -45,7 +45,13 @@ export default function Sidebar(props){
                 }}
                
                 >
-                <Typography variant="h5" sx={{m: '40px 20px'}}>Messages</Typography>
+                <Typography variant="h6" sx={{m: '20px 20px 5px 20px'}}>Messages</Typography>
+                <Box
+                    sx={{'& > :not(style)': { m: '1px 15px', width: '88%'},}}
+                >
+                    <TextField color="secondary" size="small" placeholder=" 🔍 Search" fullWidth/>
+                </Box>
+
                 <List>
                     {props.roomData.map((room, index) => (
                         <ListItem key={index} disablePadding>
