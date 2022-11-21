@@ -67,6 +67,10 @@ export default function ChatDashboard(props) {
             setMessageInput('');
             console.log(res.data);
         });
+    };
+
+    const createNewChat = () => {
+        
     }
 
     return(
@@ -86,6 +90,7 @@ export default function ChatDashboard(props) {
             <Sidebar
                 onSelectRoomID = {selectRoom}
                 roomData = {rooms}
+                onClickNewChat=''
             ></Sidebar>
             <Box sx={{flexGrow: 1, marginRight: '30px', position: 'relative'}}>
                 <Grid container direction="column" >

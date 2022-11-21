@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Box, TextField, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Button, Box, TextField, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 
@@ -41,6 +41,7 @@ export default function Sidebar(props){
                         boxSizing: 'border-box',
                     },
                     background: 'rgba(242, 233, 255, 0.24)',
+                    position: 'relative'
 
                 }}
                
@@ -66,6 +67,21 @@ export default function Sidebar(props){
                         </ListItem>
                     ))}
                 </List>
+                <Box sx={{
+                    alignItems: 'center',
+                    display:"flex",
+                    justifyContent:"center"
+                }}
+                >                 
+                    <Button variant="contained" color='secondary' sx={{
+                        bottom:'16px',
+                        position: 'absolute',
+                        width: '75%',
+                        zIndex: 9999
+                    }}
+                    onClick={props.onClickNewChat}
+                    >new chat</Button>
+                </Box>  
             </Box>
         </ThemeProvider>
     )
