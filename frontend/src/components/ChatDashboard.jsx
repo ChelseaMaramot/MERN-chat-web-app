@@ -17,6 +17,7 @@ export default function ChatDashboard(props) {
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
     const [messageInput, setMessageInput] = useState('');
+    const [newChatModal, setNewChatmodal] = useState(false);
 
     const selectRoom = (id) => {
         setConversationID(id);
@@ -70,7 +71,7 @@ export default function ChatDashboard(props) {
     };
 
     const createNewChat = () => {
-        
+        setNewChatmodal(true)
     }
 
     return(
