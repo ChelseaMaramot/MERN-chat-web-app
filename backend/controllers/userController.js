@@ -13,7 +13,6 @@ exports.getUsers = asyncHandler(async(req, res) => {
         
         const users = await UserSchema.find(username);
         res.send(users);
-        //console.log(users);
     } catch(err){
         res.status(500).json(err);
     } 
