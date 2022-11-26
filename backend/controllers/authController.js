@@ -12,7 +12,7 @@ exports.registerUser= asyncHandler(async(req, res) => {
             throw new Error ("Email already exists")
         }
         const newUser = await UserSchema.create(req.body);
-        console.log(newUser);
+        //console.log(newUser);
 
         res.status(200).json(newUser);
     } catch(err){
@@ -29,8 +29,8 @@ exports.loginUser= asyncHandler(async(req, res, next) => {
             password: req.body.password
         });
 
-        console.log("logging in...");
-        console.log(user);
+        //console.log("logging in...");
+        //console.log(user);
 
         !user && res.status(404).json("User not found");
         res.status(200).json(user);
