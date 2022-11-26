@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Button, Box, TextField, Divider, dividerClasses, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
+import ChatModal from './ChatModal';
 
 const theme = createTheme({
     components:{
@@ -23,12 +24,20 @@ const theme = createTheme({
 
 export default function Sidebar(props){
     const [selectedRoomID, setSelectedRoomID] = useState('');
+    const [newChatModal, setNewChatmodal] = useState(false);
 
     const handleListItemClick = (roomID) => {
         setSelectedRoomID(roomID);
         props.onSelectRoomID(roomID)
     };
-    
+
+
+    const handleChatModal= () => {
+        console.log(`before, ${newChatModal}`)
+        setNewChatmodal(!newChatModal);
+    }
+
+
     return (
         <ThemeProvider theme={theme}>
             <Box 
@@ -79,10 +88,18 @@ export default function Sidebar(props){
                         width: '75%',
                         zIndex: 9999
                     }}
-                    onClick={props.onClickNewChat}
+                    onClick={handleChatModal}
                     >new chat</Button>
+
+
                 </Box>  
             </Box>
+
+            <ChatModal
+            isOpen = {newChatModal}
+            closeModal = {() => setNewChatmodal(false)}
+            ></ChatModal> 
+
         </ThemeProvider>
     )
 }

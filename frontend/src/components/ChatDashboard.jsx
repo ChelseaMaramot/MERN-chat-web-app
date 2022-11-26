@@ -5,6 +5,7 @@ import ChatBar from "./ChatBar";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import MessageCard from "./Message/MessageCard"
+import ChatModal from "./ChatModal";
 
 const api = axios.create({
     baseURL: `http://localhost:3000/api`
@@ -17,7 +18,14 @@ export default function ChatDashboard(props) {
     const [rooms, setRooms] = useState([]);
     const [conversationID, setConversationID] = useState('');
     const [messageInput, setMessageInput] = useState('');
+
     const [newChatModal, setNewChatmodal] = useState(false);
+
+
+    const openModal = () => {
+        setNewChatmodal(true)
+    }
+
 
     const selectRoom = (id) => {
         setConversationID(id);
@@ -70,9 +78,7 @@ export default function ChatDashboard(props) {
         });
     };
 
-    const createNewChat = () => {
-        setNewChatmodal(true)
-    }
+
 
     return(
         <Box
@@ -84,9 +90,10 @@ export default function ChatDashboard(props) {
                 height: '100vh',
                 m:-1,
                 overflow: 'hidden',
-                background: "rgba(251, 248, 255, .8)",
+                background: "",
             }}
         >
+           
             <SideNavbar></SideNavbar>
             <Sidebar
                 onSelectRoomID = {selectRoom}
