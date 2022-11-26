@@ -67,7 +67,7 @@ export default function Sidebar(props){
                         <ListItem key={index} disablePadding>
                             <ListItemButton
                                 selected={selectedRoomID == room.conversationID}
-                                onClick={(event) => handleListItemClick(room.conversationID)}
+                                onClick={(event) => handleListItemClick(room._id)}
                                 sx={{ height: 85, border: '.25px solid rgba(242, 233, 255, 0.24)', radius: 5, background: 'rgba(242, 233, 255, 0.05)'
                             }}
                                 >
