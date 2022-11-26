@@ -41,8 +41,8 @@ mongoose
  
 app.use("/api/messages", messagesRoute);
 app.use("/api/rooms", roomRoute);
-app.use('/api', authRoute);
-app.use('/api', userRoute);
+app.use("/api", authRoute);
+app.use("/api", userRoute);
 app.listen(PORT, () =>{
     console.log(`Connection was successful on port ${PORT}`)
 });

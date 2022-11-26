@@ -98,6 +98,7 @@ export default function Sidebar(props){
             <ChatModal
             isOpen = {newChatModal}
             closeModal = {() => setNewChatmodal(false)}
+            user = {props.user}
             ></ChatModal> 
 
         </ThemeProvider>

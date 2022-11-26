@@ -99,6 +99,7 @@ export default function ChatDashboard(props) {
                 onSelectRoomID = {selectRoom}
                 roomData = {rooms}
                 onClickNewChat=''
+                user={user}
             ></Sidebar>
             <Box sx={{flexGrow: 1, marginRight: '30px', position: 'relative'}}>
                 <Grid container direction="column" >

@@ -8,7 +8,7 @@ exports.sendMessage = asyncHandler(async(req, res) => {
         res.status(200).json(newMessage);
     } catch (err){
         res.status(500).json(err);
-        console.log(err.message);
+        //console.log(err.message);
     }
 });
  

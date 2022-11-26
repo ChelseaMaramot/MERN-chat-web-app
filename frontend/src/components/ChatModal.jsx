@@ -38,7 +38,10 @@ export default function ChatModal(props){
 
         const input = event.target.value;
 
-        api.get(`/chelsea?search=test`)
+        api.get(`/${props.user}?search=${input}`).then(res=>{
+            setSearchResult(res.data);
+            console.log(searchResult)
+        })
         
 
         setSearch(input);
