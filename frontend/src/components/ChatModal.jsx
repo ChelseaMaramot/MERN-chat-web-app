@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Button, TextField, Modal, Box,Typography } from "@mui/material";
+import { create } from "@mui/material/styles/createTransitions";
+import axios from "axios";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
 const style = {
     position: 'absolute',
@@ -13,6 +16,9 @@ const style = {
     p: 4,
   };
   
+const api = axios.create({
+    baseURL: `http://localhost:3000/api`
+});
 
 
 export default function ChatModal(props){
@@ -20,13 +26,42 @@ export default function ChatModal(props){
     const [groupChatName, setGroupName] = useState();
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [search, setSearch] = useState("");
-    const [searchResult, setSearchResult] = useState([])
- 
+    const [searchResult, setSearchResult] = useState([]);
+    const [loading, setLoading] = useState(false);
+    
+    const createGroup = () => {
+
+    }
+
+    const searchHandler = async (event) => {
+        event.preventDefault(); 
+
+        const input = event.target.value;
+
+        api.get(`/chelsea?search=test`)
+        
+
+        setSearch(input);
+        if (!input){
+            return;
+        }
+        try{
+            setLoading(true)
+            const {data} = await axios.get()
+
+        } catch(error) { 
+
+        }
+
+        
+
+    }
+
     return (
         <div>
             
             <Modal
-            open={true}
+            open={props.isOpen} //props.isOpen
             onClose={props.closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -44,9 +79,10 @@ export default function ChatModal(props){
                     autoComplete="off"
                     >
                     <TextField id="group_name" label="Chat Name" color="secondary" variant="outlined" fullWidth />
-                    <TextField id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth/>
-                    <Button variant="contained" color="secondary" align="right" sx={{float: "right"}}>Create Chat</Button>
-            
+                    <TextField id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth onChange={searchHandler}/>
+                    {/*selected users*/}
+                    {/*render search users*/}
+                    <Button variant="contained" color="secondary" align="right" sx={{float: "right"}} onClick={createGroup}>Create Chat</Button>
                 </Box>
                 
             </Box>

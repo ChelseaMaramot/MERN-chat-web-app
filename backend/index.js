@@ -3,6 +3,7 @@ const express = require("express");
 const messagesRoute = require('./routes/messagesRoute');
 const roomRoute = require('./routes/roomRoute');
 const authRoute = require('./routes/authRoute');
+const userRoute = require('./routes/userRoute');
 const cors = require('cors');
 const { Server } = require("http");
 require('dotenv/config');
@@ -41,6 +42,7 @@ mongoose
 app.use("/api/messages", messagesRoute);
 app.use("/api/rooms", roomRoute);
 app.use('/api', authRoute);
+app.use('/api', userRoute);
 app.listen(PORT, () =>{
     console.log(`Connection was successful on port ${PORT}`)
 });
