@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField, Modal, Box,Typography } from "@mui/material";
+import { Button, TextField, Modal, Box, Typography, CircularProgress } from "@mui/material";
 import { create } from "@mui/material/styles/createTransitions";
 import axios from "axios";
 import { alignProperty } from "@mui/material/styles/cssUtils";
@@ -27,7 +27,7 @@ export default function ChatModal(props){
     const [groupChatName, setGroupName] = useState();
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [search, setSearch] = useState("");
-    const [searchResult, setSearchResult] = useState();
+    const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(false);
     
     const createGroup = () => {
@@ -41,26 +41,31 @@ export default function ChatModal(props){
 
     const searchHandler = async (event) => {
         event.preventDefault(); 
-
         const input = event.target.value;
-
+        setLoading(true);
         if (!input){
-            setLoading(true);
-            setSearchResult('');
+            setLoading(false);
+            setSearchResult([]);
             return;
         }
         try{
-            setLoading(false);
-           api.get(`/${props.user}?search=${input}`).then(res=>{
+            api.get(`/${props.user}?search=${input}`).then(res=>{
                 setSearchResult(res.data);
+                setLoading(false);
             })
-        
         } catch(error) { 
 
         }
+    }
 
-        
+    const selectUser = (newUser) => {
+        // check if selected user is already in array 
+        setSelectedUsers([...selectedUsers, newUser]);
+        console.log(selectedUsers);
+    }
 
+    const removeUser = (index) => {
+        selectedUsers.splice(index, 1);
     }
 
     return (
@@ -86,18 +91,20 @@ export default function ChatModal(props){
                     >
                     <TextField id="group_name" label="Chat Name" color="secondary" variant="outlined" fullWidth />
                     <TextField id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth onChange={searchHandler}/>
-                    {/*selected users*/}
-
-                    {searchResult ?
                     
-                    searchResult.slice(0,5).map((search, index) => 
-                        <Box key={index} display='flex'  >
-                            <Button variant="contained" sx={{color:'black', background:"#D2D4DA", display: "block", textAlign: "left" }} fullWidth>
-                                <Typography>{search.username}</Typography>
-                                <Typography textTransform={'none'}>email: {search.email}</Typography>
-                            </Button>
-                        </Box>
-                    ) : ''
+                    {selectedUsers.map((user, index) => 
+                            <Button onDoubleClick={(event) => removeUser(index)}>{user.username}</Button>
+                    )}
+        
+                    {loading ? (<CircularProgress></CircularProgress>) :
+                        (searchResult.slice(0,5).map((search, index) => 
+                            <Box key={index} display='flex'  >
+                                <Button variant="contained" sx={{color:'black', background:"#D2D4DA", display: "block", textAlign: "left" }} fullWidth onClick={(event) => selectUser(search)}>
+                                    <Typography>{search.username}</Typography>
+                                    <Typography textTransform={'none'}>email: {search.email}</Typography>
+                                </Button>
+                            </Box>)
+                        ) 
                     }
                     <Button variant="contained" color="secondary" align="right" sx={{float: "right"}} onClick={createGroup}>Create Chat</Button>
                 </Box>
