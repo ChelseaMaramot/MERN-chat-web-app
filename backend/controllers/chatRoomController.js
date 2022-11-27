@@ -10,8 +10,12 @@ exports.createRoom = asyncHandler(async(req, res) => {
         if (!req.body.users || !req.body.roomName){
             return res.status(400).send({message: "Please Fill Out All Fields"})
         }
-        const newRoom = await RoomSchema.create(req.body);
-        res.status(200).json(newRoom);
+
+        const users = JSON.parse(req.body.users);
+        console.log(users);
+
+        //const newRoom = await RoomSchema.create(req.body);
+        //res.status(200).json(newRoom);
         //console.log(newRoom);
     } catch(err){
         res.status(500).json(err);

@@ -4,6 +4,7 @@ import { create } from "@mui/material/styles/createTransitions";
 import axios from "axios";
 import { alignProperty } from "@mui/material/styles/cssUtils";
 
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -26,11 +27,16 @@ export default function ChatModal(props){
     const [groupChatName, setGroupName] = useState();
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [search, setSearch] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState();
     const [loading, setLoading] = useState(false);
     
     const createGroup = () => {
-
+        api.post(`/rooms`, {
+            users: {selectedUsers},
+            roomName: {groupChatName}
+        }).then(res => {
+            setSelectedUsers([]);
+        })
     }
 
     const searchHandler = async (event) => {
@@ -38,20 +44,17 @@ export default function ChatModal(props){
 
         const input = event.target.value;
 
-        api.get(`/${props.user}?search=${input}`).then(res=>{
-            setSearchResult(res.data);
-            console.log(searchResult)
-        })
-        
-
-        setSearch(input);
         if (!input){
+            setLoading(true)
+            setSearchResult('');
             return;
         }
         try{
-            setLoading(true)
-            const {data} = await axios.get()
-
+        
+           api.get(`/${props.user}?search=${input}`).then(res=>{
+                setSearchResult(res.data);
+            })
+        
         } catch(error) { 
 
         }
@@ -64,7 +67,7 @@ export default function ChatModal(props){
         <div>
             
             <Modal
-            open={props.isOpen} //props.isOpen
+            open={true} //props.isOpen
             onClose={props.closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -84,7 +87,18 @@ export default function ChatModal(props){
                     <TextField id="group_name" label="Chat Name" color="secondary" variant="outlined" fullWidth />
                     <TextField id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth onChange={searchHandler}/>
                     {/*selected users*/}
-                    {/*render search users*/}
+
+                    {searchResult ?
+                    
+                    searchResult.slice(0,5).map((search, index) => 
+                        <Box display='flex' fullWidth >
+                            <Button variant="contained" sx={{color:'black', background:"#D2D4DA", display: "block", textAlign: "left" }} fullWidth>
+                                <Typography>{search.username}</Typography>
+                                <Typography textTransform={'none'}>email: {search.email}</Typography>
+                            </Button>
+                        </Box>
+                    ) : ''
+                    }
                     <Button variant="contained" color="secondary" align="right" sx={{float: "right"}} onClick={createGroup}>Create Chat</Button>
                 </Box>
                 
