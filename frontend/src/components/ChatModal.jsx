@@ -45,12 +45,12 @@ export default function ChatModal(props){
         const input = event.target.value;
 
         if (!input){
-            setLoading(true)
+            setLoading(true);
             setSearchResult('');
             return;
         }
         try{
-        
+            setLoading(false);
            api.get(`/${props.user}?search=${input}`).then(res=>{
                 setSearchResult(res.data);
             })
@@ -91,7 +91,7 @@ export default function ChatModal(props){
                     {searchResult ?
                     
                     searchResult.slice(0,5).map((search, index) => 
-                        <Box display='flex' fullWidth >
+                        <Box key={index} display='flex'  >
                             <Button variant="contained" sx={{color:'black', background:"#D2D4DA", display: "block", textAlign: "left" }} fullWidth>
                                 <Typography>{search.username}</Typography>
                                 <Typography textTransform={'none'}>email: {search.email}</Typography>
