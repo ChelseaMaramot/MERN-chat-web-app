@@ -24,44 +24,50 @@ const api = axios.create({
 
 export default function ChatModal(props){
 
-    const [groupChatName, setGroupName] = useState();
+    const [groupName, setGroupName] = useState('');
     const [selectedUsers, setSelectedUsers] = useState([]);
-    const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(false);
-    
+    const [validate, setValidate] = useState(false);
+
     const createGroup = () => {
+
         api.post(`/rooms`, {
-            users: {selectedUsers},
-            roomName: {groupChatName}
+            users: selectedUsers.map(user => user._id),
+            roomName: groupName
         }).then(res => {
             setSelectedUsers([]);
-        })
+            setValidate(false);
+        });
+        setValidate(true);
     }
 
     const searchHandler = async (event) => {
         event.preventDefault(); 
         const input = event.target.value;
-        setLoading(true);
         if (!input){
             setLoading(false);
             setSearchResult([]);
             return;
-        }
+        };
         try{
+            setLoading(true);
             api.get(`/${props.user}?search=${input}`).then(res=>{
                 setSearchResult(res.data);
                 setLoading(false);
             })
         } catch(error) { 
-
-        }
+            console.log(error);
+        };
     }
 
     const selectUser = (newUser) => {
         // check if selected user is already in array 
-        setSelectedUsers([...selectedUsers, newUser]);
-        console.log(selectedUsers);
+        console.log(selectedUsers.length)
+        if (!selectedUsers.includes(newUser)) {
+            setSelectedUsers([...selectedUsers, newUser]);
+            console.log(selectedUsers);
+        };
     }
 
     const removeUser = (index) => {
@@ -72,7 +78,7 @@ export default function ChatModal(props){
         <div>
             
             <Modal
-            open={true} //props.isOpen
+            open={props.isOpen}
             onClose={props.closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -89,11 +95,11 @@ export default function ChatModal(props){
                     noValidate
                     autoComplete="off"
                     >
-                    <TextField id="group_name" label="Chat Name" color="secondary" variant="outlined" fullWidth />
-                    <TextField id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth onChange={searchHandler}/>
+                    <TextField required error={validate && groupName == ''} helperText={validate && groupName == '' ? "Please enter chat name" : null} id="group_name" label="Chat Name" color="secondary" variant="outlined" fullWidth onChange={(event) => setGroupName(event.target.value)}/>
+                    <TextField error={validate && selectedUsers.length < 1} helperText={validate && selectedUsers.length < 1 ? "Please select at least one user" : null} id="users" label="Add Users eg: John, Jane" color="secondary" variant="outlined" fullWidth onChange={searchHandler}/>
                     
                     {selectedUsers.map((user, index) => 
-                            <Button onDoubleClick={(event) => removeUser(index)}>{user.username}</Button>
+                            <Button key={index} onDoubleClick={(event) => removeUser(index)}>{user.username}</Button>
                     )}
         
                     {loading ? (<CircularProgress></CircularProgress>) :

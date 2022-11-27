@@ -6,19 +6,17 @@ const { rawListeners } = require('../model/User');
 // Creates a new room 
 exports.createRoom = asyncHandler(async(req, res) => {
     try{
-
+        console.log('here');
         if (!req.body.users || !req.body.roomName){
+            console.log('here');
             return res.status(400).send({message: "Please Fill Out All Fields"})
         }
-
-        const users = JSON.parse(req.body.users);
-        console.log(users);
-
-        //const newRoom = await RoomSchema.create(req.body);
-        //res.status(200).json(newRoom);
-        //console.log(newRoom);
+        console.log(req.body)
+       const newRoom = await RoomSchema.create(req.body);
+        res.status(200).json(newRoom);
+        console.log(newRoom);
     } catch(err){
-        res.status(500).json(err);
+        console.log(err);
     } 
 });
 
