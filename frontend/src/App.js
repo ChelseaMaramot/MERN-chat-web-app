@@ -1,13 +1,13 @@
 import React from 'react';
 import Chat from './components/ChatDashboard';
-import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 function App() {
   return (
     <React.Fragment>
       {/*<Chat></Chat>*/}
-      <Login></Login>
+      <Signup></Signup>
     </React.Fragment>
   );
 }

@@ -22,15 +22,14 @@ export default function Login(){
         <Paper elevation={12} style={{padding: 35}}>
             <Grid align="center">
                 <Avatar src="/broken-image.jpg" />
-                <Typography>Login</Typography>
-                <Box component="form" sx={{mt:2}}>
+                <Typography mt={2}>Create your free account</Typography>
+                <Box component="form" sx={{mt:3}}>
+                    <TextField label="Username" fullWidth required sx={{mb:1.5}}></TextField>
                     <TextField label="Email" fullWidth required sx={{mb:1.5}}></TextField>
                     <TextField label="Password" type="password" fullWidth required></TextField>
-                    <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" /> 
-                    <Link href="#" variant="body2">Forgot password?</Link>
-                    <Button type="submit" variant='contained' fullWidth sx={{mt:1.5, mb:5}}>LOGIN</Button>
-                    <Typography variant="body2"> Not registered yet?
-                        <Link href="#" variant="body2">Create an Account</Link>
+                    <Button type="submit" variant='contained' fullWidth sx={{mt:3, mb:5}}>SIGNUP</Button>
+                    <Typography variant="body2"> Already have an account?
+                        <Link href="#" variant="body2">SIGN IN</Link>
                     </Typography>
                 </Box>
              </Grid>
