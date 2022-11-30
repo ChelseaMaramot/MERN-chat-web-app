@@ -6,14 +6,14 @@ import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Grid, Typography, TextField, Button, FormControlLabel, Link, Checkbox } from '@mui/material';
 
-export default function Login(){
+export default function Signup(){
     return (
         <Box
         sx={{
           display: 'flex',
           '& > :not(style)': {
             m: 'auto',
-            width: 300,
+            width: 400,
             height: 500,
           },
           alignItems: 'center',

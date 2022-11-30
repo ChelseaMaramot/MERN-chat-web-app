@@ -7,7 +7,6 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import Icon from '@mui/material/Icon';
 
 
-
 export default function SideNavbar(){
     return (
         <React.Fragment>

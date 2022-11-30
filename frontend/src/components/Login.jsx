@@ -13,7 +13,7 @@ export default function Login(){
           display: 'flex',
           '& > :not(style)': {
             m: 'auto',
-            width: 300,
+            width: 400,
             height: 500,
           },
           alignItems: 'center',
