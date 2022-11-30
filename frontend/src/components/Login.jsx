@@ -22,13 +22,13 @@ export default function Login(){
         <Paper elevation={12} style={{padding: 35}}>
             <Grid align="center">
                 <Avatar src="/broken-image.jpg" />
-                <Typography>Login</Typography>
-                <Box component="form" sx={{mt:2}}>
+                <Typography mt={1}>Login</Typography>
+                <Box component="form" sx={{mt:3}}>
                     <TextField label="Email" fullWidth required sx={{mb:1.5}}></TextField>
                     <TextField label="Password" type="password" fullWidth required></TextField>
                     <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" /> 
                     <Link href="#" variant="body2">Forgot password?</Link>
-                    <Button type="submit" variant='contained' fullWidth sx={{mt:1.5, mb:5}}>LOGIN</Button>
+                    <Button type="submit" variant='contained' fullWidth sx={{mt: 2, mb:5}}>LOGIN</Button>
                     <Typography variant="body2"> Not registered yet?
                         <Link href="#" variant="body2">Create an Account</Link>
                     </Typography>
