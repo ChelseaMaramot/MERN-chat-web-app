@@ -39,8 +39,10 @@ exports.loginUser= asyncHandler(async(req, res, next) => {
         */
 
         //Authorization
-        const accessToken = authMiddleware.generateToken(user);
-        res.json({accessToken: accessToken})
+        const accessToken = authMiddleware.generateToken({"email": "Chelsea@yahoo.com", "password": "123"});
+        //console.log(accessToken);
+        console.log('middleware success!')
+        res.json(req.body);
         
     } catch(err){
         res.status(500).json(err);

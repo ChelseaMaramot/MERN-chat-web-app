@@ -12,24 +12,28 @@ module.exports.generateToken = function(data){
 
 module.exports.authenticateToken = function(req, res, next){
     // client sends Authorization: Basic token
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split('')[1]; //BEARER TOKEN
 
+    //console.log(generateToken(req.body));
+    const authHeader = req.headers['authorization'];
+    console.log(req.headers);
+    const token = authHeader && authHeader.split(' ')[1]; //BEARER TOKEN
+   
     if (!token) {
         return res.status(401).json("token not found");
     }
+    
     try{
         // verify token
+        console.log('token verified')
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
             if (err) return res.sendStatus(403).json("invalid token");
-            req.username = data.username;
             req.email = data.email;
             req.password = data.password;
-
             next();
         });
     } catch (error){
         res.status(401).json("invalid token");
     }
+    
 };
 
