@@ -26,8 +26,10 @@ export default function Login(){
                 <Box component="form" sx={{mt:3}}>
                     <TextField label="Email" fullWidth required sx={{mb:1.5}}></TextField>
                     <TextField label="Password" type="password" fullWidth required></TextField>
-                    <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" /> 
-                    <Link href="#" variant="body2">Forgot password?</Link>
+                    <Box>
+                      <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" /> 
+                      <Link href="#" variant="body2">Forgot password?</Link>
+                    </Box>
                     <Button type="submit" variant='contained' fullWidth sx={{mt: 2, mb:5}}>LOGIN</Button>
                     <Typography variant="body2"> Not registered yet?
                         <Link href="#" variant="body2">Create an Account</Link>
