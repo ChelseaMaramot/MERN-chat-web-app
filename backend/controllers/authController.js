@@ -1,5 +1,8 @@
 const asyncHandler = require('express-async-handler');
+const { JsonWebTokenError } = require('jsonwebtoken');
 const UserSchema = require('../model/User');
+const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middleware/authMiddleware');
 
 //Method: POST
 exports.registerUser= asyncHandler(async(req, res) => {
@@ -12,7 +15,6 @@ exports.registerUser= asyncHandler(async(req, res) => {
             throw new Error ("Email already exists")
         }
         const newUser = await UserSchema.create(req.body);
-        //console.log(newUser);
 
         res.status(200).json(newUser);
     } catch(err){
@@ -24,16 +26,21 @@ exports.registerUser= asyncHandler(async(req, res) => {
 //METHOD: POST
 exports.loginUser= asyncHandler(async(req, res, next) => {
     try {
+
+        //Authentication
+        /*
         const user = await UserSchema.findOne({
             email: req.body.email,
             password: req.body.password
         });
 
-        //console.log("logging in...");
-        //console.log(user);
-
         !user && res.status(404).json("User not found");
         res.status(200).json(user);
+        */
+
+        //Authorization
+        const accessToken = authMiddleware.generateToken(user);
+        res.json({accessToken: accessToken})
         
     } catch(err){
         res.status(500).json(err);
