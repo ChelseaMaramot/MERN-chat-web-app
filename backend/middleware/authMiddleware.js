@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
-const { runInNewContext } = require('vm');
 dotenv.config();
 
 // token will be valid for 30 mins
