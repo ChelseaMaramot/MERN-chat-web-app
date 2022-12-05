@@ -5,7 +5,6 @@ dotenv.config();
 
 // token will be valid for 30 mins
 module.exports.generateToken = function(data){
-    
     console.log(data);
     return jwt.sign(data,process.env.ACCESS_TOKEN_SECRET , {expiresIn: '1800s'})
 }
