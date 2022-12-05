@@ -4,6 +4,7 @@ const UserSchema = require('../model/User');
 const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middleware/authMiddleware');
 const bcrypt = require("bcrypt");
+const cookieParser = require('cookie-parser');
 
 //Method: POST
 exports.registerUser= asyncHandler(async(req, res) => {
@@ -22,7 +23,6 @@ exports.registerUser= asyncHandler(async(req, res) => {
 
         const newUser = await UserSchema.create(req.body);
         res.status(200).json(newUser);
-        
     } catch(err){
         res.status(500).json(err);
     } 
@@ -36,7 +36,6 @@ exports.loginUser= asyncHandler(async(req, res, next) => {
         //Authentication
         const user = await UserSchema.findOne({
             email: req.body.email,
-            //password: req.body.password
         });
         !user && res.status(404).json("User not found");
         
@@ -46,6 +45,12 @@ exports.loginUser= asyncHandler(async(req, res, next) => {
         
         //Authorization
         const accessToken = authMiddleware.generateToken({"email": "Chelsea@yahoo.com", "password": "123"});
+
+        //create cookie and store in browser for 30 days
+        res.cookie("access-token", accessToken, {
+            maxAge: 2592000000 // in ms -> 30 days
+        });
+
         //console.log(accessToken);
         console.log('middleware success!')
         res.status(200).json(req.body);

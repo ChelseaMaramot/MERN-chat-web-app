@@ -6,11 +6,14 @@ const authRoute = require('./routes/authRoute');
 const userRoute = require('./routes/userRoute');
 const cors = require('cors');
 const { Server } = require("http");
+const cookieParser = require('cookie-parser');
+
 require('dotenv/config');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 PORT = process.env.PORT || 3000
 
 

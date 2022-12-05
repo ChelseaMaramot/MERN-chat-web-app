@@ -5,13 +5,11 @@ dotenv.config();
 
 // token will be valid for 30 mins
 module.exports.generateToken = function(data){
-    console.log(data);
-    return jwt.sign(data,process.env.ACCESS_TOKEN_SECRET , {expiresIn: '1800s'})
-}
+    return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1800s'})
+};
 
 module.exports.authenticateToken = function(req, res, next){
     // client sends Authorization: Basic token
-
     //console.log(generateToken(req.body));
     const authHeader = req.headers['authorization'];
     console.log(req.headers);
